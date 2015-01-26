@@ -1,0 +1,11 @@
+machine:
+  ruby:
+    version: 2.2.0
+
+deployment:
+  prod:
+   branch: master
+   commands:
+     - git push git@heroku.com:sound-tribes.git $CIRCLE_SHA1:refs/heads/master
+     - heroku run rake db:migrate --app sound-tribes:
+         timeout: 400
